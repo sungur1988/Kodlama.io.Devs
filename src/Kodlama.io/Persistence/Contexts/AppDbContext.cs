@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Persistence.Configurations;
 using Persistence.SeedDatas;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace Persistence.Contexts
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration<ProgrammingLanguage>(new ProgrammingLanguageConfiguration());
             modelBuilder.ApplyConfiguration<ProgrammingLanguage>(new ProgrammingLanguageDataSeed());
         }
     }

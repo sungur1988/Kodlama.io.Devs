@@ -35,7 +35,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProgrammingLanguages");
+                    b.ToTable("ProgrammingLanguages", (string)null);
 
                     b.HasData(
                         new
