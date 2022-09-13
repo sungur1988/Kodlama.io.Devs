@@ -22,4 +22,5 @@ public interface IAsyncRepository<T> : IQuery<T> where T : Entity
     Task<T> AddAsync(T entity);
     Task<T> UpdateAsync(T entity);
     Task<T> DeleteAsync(T entity);
+    Task<bool> AnyAsync(Expression<Func<T, bool>> expression = null);
 }

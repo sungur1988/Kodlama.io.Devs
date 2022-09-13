@@ -130,4 +130,15 @@ public class EfRepositoryBase<TEntity, TContext> : IAsyncRepository<TEntity>, IR
         Context.SaveChanges();
         return entity;
     }
+    public Task<bool> AnyAsync(Expression<Func<TEntity, bool>> expression = null)
+    {
+        var query = Context.Set<TEntity>().AsQueryable();
+
+        if (expression != null)
+        {
+            query = query.Where(expression);
+        }
+
+        return query.AnyAsync();
+    }
 }

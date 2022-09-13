@@ -1,10 +1,13 @@
 ﻿using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
+using Core.Persistence.Paging;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Application.Features.ProgrammingLanguages.Rules
 {
@@ -19,8 +22,13 @@ namespace Application.Features.ProgrammingLanguages.Rules
 
         public async Task ProgrammingLanguageCannotBeDuplicatedWhenInsertedOrUpdated(string name)
         {
-            var entities = await _programmingLanguageRepository.GetListAsync(x => x.Name == name);
+            IPaginate<ProgrammingLanguage> entities = await _programmingLanguageRepository.GetListAsync(x => x.Name==name,enableTracking:false);
             if (entities.Items.Any()) throw new BusinessException($"Programming language name {name} exists.");
+        }
+        public async Task ProgrammingLanguageMustExistWhenUpdatedOrDeleted(int id)
+        {
+            IPaginate<ProgrammingLanguage> entities = await _programmingLanguageRepository.GetListAsync(x => x.Id == id,enableTracking:false);
+            if (entities.Items is null ) throw new BusinessException($"Programming language with {id} id  doesn't exists.");
         }
     }
 }
