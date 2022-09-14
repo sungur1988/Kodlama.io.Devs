@@ -29,6 +29,7 @@ namespace Application.Features.ProgrammingLanguages.Commands.UpdateProgrammingLa
         {
             await _programmingLanguageBusinessRules.ProgrammingLanguageCannotBeDuplicatedWhenInsertedOrUpdated(request.Name);
             await _programmingLanguageBusinessRules.ProgrammingLanguageMustExistWhenUpdatedOrDeleted(request.Id);
+            _programmingLanguageBusinessRules.ProgrammingLanguageNameCannotBeEmpty(request.Name);
 
             var entityToUpdated = _mapper.Map<ProgrammingLanguage>(request);
             var updatedEntity = await _programmingLanguageRepository.UpdateAsync(entityToUpdated);

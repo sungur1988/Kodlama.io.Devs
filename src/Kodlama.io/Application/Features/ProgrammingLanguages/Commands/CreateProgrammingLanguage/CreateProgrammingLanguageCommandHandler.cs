@@ -28,6 +28,7 @@ namespace Application.Features.ProgrammingLanguages.Commands.CreateProgrammingLa
         public async Task<CreatedProgrammingLanguageDto> Handle(CreateProgrammingLanguageCommand request, CancellationToken cancellationToken)
         {
             await _programmingLanguageBusinessRules.ProgrammingLanguageCannotBeDuplicatedWhenInsertedOrUpdated(request.Name);
+            _programmingLanguageBusinessRules.ProgrammingLanguageNameCannotBeEmpty(request.Name);
 
             var entityToAdd = _mapper.Map<ProgrammingLanguage>(request);
             var addedEntity = await _programmingLanguageRepository.AddAsync(entityToAdd);
