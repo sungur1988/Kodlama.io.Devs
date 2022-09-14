@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace Application.Features.ProgrammingLanguages.Queries.GetProgrammingLanguageById
 {
-    public class GetProgrammingLanguageByIdCommandHandler : IRequestHandler<GetProgrammingLanguageByIdQuery, GetByIdProgrammingLanguageDto>
+    public class GetProgrammingLanguageByIdQueryHandler : IRequestHandler<GetProgrammingLanguageByIdQuery, GetByIdProgrammingLanguageDto>
     {
         private readonly IProgrammingLanguageRepository _programmingLanguageRepository;
         private readonly IMapper _mapper;
         private readonly ProgrammingLanguageBusinessRules _programmingLanguageBusinessRules;
 
-        public GetProgrammingLanguageByIdCommandHandler(IProgrammingLanguageRepository programmingLanguageRepository, IMapper mapper, ProgrammingLanguageBusinessRules programmingLanguageBusinessRules)
+        public GetProgrammingLanguageByIdQueryHandler(IProgrammingLanguageRepository programmingLanguageRepository, IMapper mapper, ProgrammingLanguageBusinessRules programmingLanguageBusinessRules)
         {
             _programmingLanguageRepository = programmingLanguageRepository;
             _mapper = mapper;
