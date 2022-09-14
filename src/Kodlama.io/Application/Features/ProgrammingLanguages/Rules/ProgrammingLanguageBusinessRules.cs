@@ -33,5 +33,9 @@ namespace Application.Features.ProgrammingLanguages.Rules
             IPaginate<ProgrammingLanguage> entities = await _programmingLanguageRepository.GetListAsync(x => x.Id == id,enableTracking:false);
             if (!entities.Items.Any() ) throw new BusinessException($"Programming language with {id} id  doesn't exists.");
         }
+        public void ProgrammingLanguageMustExistWhenRequested(ProgrammingLanguage? programmingLanguage)
+        {
+            if (programmingLanguage is null) throw new BusinessException("Requested programming language doesn't exist");
+        }
     }
 }
