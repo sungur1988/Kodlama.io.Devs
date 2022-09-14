@@ -31,7 +31,7 @@ namespace Application.Features.ProgrammingLanguages.Rules
         public async Task ProgrammingLanguageMustExistWhenUpdatedOrDeleted(int id)
         {
             IPaginate<ProgrammingLanguage> entities = await _programmingLanguageRepository.GetListAsync(x => x.Id == id,enableTracking:false);
-            if (entities.Items is null ) throw new BusinessException($"Programming language with {id} id  doesn't exists.");
+            if (!entities.Items.Any() ) throw new BusinessException($"Programming language with {id} id  doesn't exists.");
         }
     }
 }

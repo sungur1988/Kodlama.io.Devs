@@ -1,7 +1,9 @@
 ﻿using Application.Features.ProgrammingLanguages.Commands.CreateProgrammingLanguage;
+using Application.Features.ProgrammingLanguages.Commands.DeleteProgrammingLanguage;
 using Application.Features.ProgrammingLanguages.Commands.UpdateProgrammingLanguage;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices;
 
 namespace WebAPI.Controllers
 {
@@ -17,6 +19,12 @@ namespace WebAPI.Controllers
         }
         [HttpPut]
         public async Task<IActionResult> UpdateProgrammingLanguage([FromBody] UpdateProgrammingLanguageCommand request)
+        {
+            var result = await Mediator.Send(request);
+            return Ok(result);
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteProgrammingLanguage([FromBody] DeleteProgrammingLanguageCommand request)
         {
             var result = await Mediator.Send(request);
             return Ok(result);
