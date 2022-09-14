@@ -23,7 +23,10 @@ namespace Application.Features.ProgrammingLanguages.Rules
         public async Task ProgrammingLanguageCannotBeDuplicatedWhenInsertedOrUpdated(string name)
         {
             IPaginate<ProgrammingLanguage> entities = await _programmingLanguageRepository.GetListAsync(x => x.Name==name,enableTracking:false);
-            if (entities.Items.Any()) throw new BusinessException($"Programming language name {name} exists.");
+            foreach (ProgrammingLanguage item in entities.Items)
+            {
+                if (item.Name == name) throw new BusinessException($"Programming language name {name} already exist.");
+            }
         }
         public async Task ProgrammingLanguageMustExistWhenUpdatedOrDeleted(int id)
         {
