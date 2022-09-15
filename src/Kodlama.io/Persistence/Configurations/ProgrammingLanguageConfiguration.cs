@@ -18,6 +18,7 @@ namespace Persistence.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x=>x.Name).HasColumnName("Name");
             builder.Property(x => x.Id).HasColumnName("Id");
+            builder.HasMany(x => x.LanguageTechs);
         }
     }
 }

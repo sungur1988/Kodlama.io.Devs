@@ -21,6 +21,9 @@ namespace Persistence.Contexts
         {
             modelBuilder.ApplyConfiguration<ProgrammingLanguage>(new ProgrammingLanguageConfiguration());
             modelBuilder.ApplyConfiguration<ProgrammingLanguage>(new ProgrammingLanguageDataSeed());
+
+            modelBuilder.ApplyConfiguration<LanguageTech>(new LanguageTechConfiguration());
+            modelBuilder.ApplyConfiguration<LanguageTech>(new LanguageTechSeedData());
         }
     }
 }
