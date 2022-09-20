@@ -16,5 +16,12 @@ namespace WebAPI.Controllers
             CreatedLanguageTechDto result = await Mediator.Send(request);
             return Created("",result);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateLanguageTech(UpdateLanguageTechCommand request)
+        {
+            UpdatedLanguageTechDto result = await Mediator.Send(request);
+            return Ok(result);
+        }
     }
 }
