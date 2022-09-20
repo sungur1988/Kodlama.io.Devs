@@ -16,7 +16,7 @@ namespace Domain.Entities
         {
 
         }
-        public LanguageTech(int id,int programmingLanguageId, string name = null)
+        public LanguageTech(int id,int programmingLanguageId, string name)
         {
             Id = id;
             ProgrammingLanguageId = programmingLanguageId;

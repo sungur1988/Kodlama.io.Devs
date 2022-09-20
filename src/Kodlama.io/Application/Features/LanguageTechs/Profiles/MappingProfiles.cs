@@ -1,4 +1,5 @@
 ﻿using Application.Features.LanguageTechs.Commands.CreateLanguageTech;
+using Application.Features.LanguageTechs.Commands.UpdateLanguageTech;
 using Application.Features.LanguageTechs.Dtos;
 using AutoMapper;
 using Domain.Entities;
@@ -15,8 +16,10 @@ namespace Application.Features.LanguageTechs.Profiles
         public MappingProfiles()
         {
             CreateMap<LanguageTech,CreateLanguageTechCommand>().ReverseMap();
-            CreateMap<LanguageTech, CreatedLanguageTechDto>()
-                .ForMember(x => x.ProgrammingLanguageName, opt => opt.MapFrom(x => x.ProgrammingLanguage.Name))
+            CreateMap<LanguageTech, CreatedLanguageTechDto>().ReverseMap();
+            CreateMap<LanguageTech, UpdateLanguageTechCommand>().ReverseMap();
+            CreateMap<LanguageTech, UpdatedLanguageTechDto>()
+                .ForMember(x => x.LanguageTechName, opt => opt.MapFrom(y => y.Name))
                 .ReverseMap();
         }
     }

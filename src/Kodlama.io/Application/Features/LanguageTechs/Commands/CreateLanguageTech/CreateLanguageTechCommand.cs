@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 
 namespace Application.Features.LanguageTechs.Commands.CreateLanguageTech
 {
-    public record CreateLanguageTechCommand(string Name) : IRequest<CreatedLanguageTechDto>;
+    public record CreateLanguageTechCommand(string Name,int ProgrammingLanguageId) : IRequest<CreatedLanguageTechDto>;
 }

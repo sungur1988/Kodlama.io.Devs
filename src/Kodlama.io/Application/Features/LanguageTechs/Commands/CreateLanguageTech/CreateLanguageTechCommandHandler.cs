@@ -1,4 +1,4 @@
-﻿using Application.Features.LanguageTechs.Commands.CreateLanguageTech;
+﻿using Application.Features.LanguageTechs.Dtos;
 using Application.Features.LanguageTechs.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.LanguageTechs.Dtos
+namespace Application.Features.LanguageTechs.Commands.CreateLanguageTech
 {
     public class CreateLanguageTechCommandHandler : IRequestHandler<CreateLanguageTechCommand, CreatedLanguageTechDto>
     {
@@ -27,9 +27,9 @@ namespace Application.Features.LanguageTechs.Dtos
 
         public async Task<CreatedLanguageTechDto> Handle(CreateLanguageTechCommand request, CancellationToken cancellationToken)
         {
-            await _languageTechBusinessRules.ProgrammingLanguageCannotBeDuplicatedWhenInsertedOrUpdated(request.Name);
+            await _languageTechBusinessRules.LanguageTechCannotBeDuplicatedWhenInsertedOrUpdated(request.Name);
 
-            LanguageTech entityToAdd =  _mapper.Map<LanguageTech>(request); 
+            LanguageTech entityToAdd = _mapper.Map<LanguageTech>(request);
             LanguageTech addedEntity = await _languageTechRepository.AddAsync(entityToAdd);
             CreatedLanguageTechDto mappedEntity = _mapper.Map<CreatedLanguageTechDto>(addedEntity);
 

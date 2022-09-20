@@ -20,7 +20,7 @@ namespace Application.Features.LanguageTechs.Rules
             _languageTechRepository = languageTechRepository;
         }
 
-        public async Task ProgrammingLanguageCannotBeDuplicatedWhenInsertedOrUpdated(string name)
+        public async Task LanguageTechCannotBeDuplicatedWhenInsertedOrUpdated(string name)
         {
             IPaginate<LanguageTech> entities = await _languageTechRepository.GetListAsync(x => x.Name == name, enableTracking: false);
             foreach (LanguageTech item in entities.Items)
@@ -28,12 +28,12 @@ namespace Application.Features.LanguageTechs.Rules
                 if (item.Name == name) throw new BusinessException($"Programming language name {name} already exist.");
             }
         }
-        public async Task ProgrammingLanguageMustExistWhenUpdatedOrDeleted(int id)
+        public async Task LanguageTechMustExistWhenUpdatedOrDeleted(int id)
         {
             IPaginate<LanguageTech> entities = await _languageTechRepository.GetListAsync(x => x.Id == id, enableTracking: false);
             if (!entities.Items.Any()) throw new BusinessException($"Tech with {id} id  doesn't exists.");
         }
-        public void ProgrammingLanguageMustExistWhenRequested(LanguageTech? languageTech)
+        public void LanguageTechMustExistWhenRequested(LanguageTech? languageTech)
         {
             if (languageTech is null) throw new BusinessException("Requested tech  doesn't exist");
         }
