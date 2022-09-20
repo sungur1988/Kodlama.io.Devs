@@ -1,4 +1,5 @@
 ﻿using Application.Features.LanguageTechs.Commands.CreateLanguageTech;
+using Application.Features.LanguageTechs.Commands.DeleteLanguageTech;
 using Application.Features.LanguageTechs.Commands.UpdateLanguageTech;
 using Application.Features.LanguageTechs.Dtos;
 using AutoMapper;
@@ -17,10 +18,14 @@ namespace Application.Features.LanguageTechs.Profiles
         {
             CreateMap<LanguageTech,CreateLanguageTechCommand>().ReverseMap();
             CreateMap<LanguageTech, CreatedLanguageTechDto>().ReverseMap();
+
             CreateMap<LanguageTech, UpdateLanguageTechCommand>().ReverseMap();
             CreateMap<LanguageTech, UpdatedLanguageTechDto>()
                 .ForMember(x => x.LanguageTechName, opt => opt.MapFrom(y => y.Name))
                 .ReverseMap();
+
+            CreateMap<LanguageTech, DeleteLanguageTechCommand>().ReverseMap();
+            CreateMap<LanguageTech, DeletedLanguageTechDto>().ReverseMap();
         }
     }
 }

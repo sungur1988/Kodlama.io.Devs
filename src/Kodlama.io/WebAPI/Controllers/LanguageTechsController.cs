@@ -1,4 +1,5 @@
 ﻿using Application.Features.LanguageTechs.Commands.CreateLanguageTech;
+using Application.Features.LanguageTechs.Commands.DeleteLanguageTech;
 using Application.Features.LanguageTechs.Commands.UpdateLanguageTech;
 using Application.Features.LanguageTechs.Dtos;
 using Microsoft.AspNetCore.Http;
@@ -21,6 +22,12 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> UpdateLanguageTech(UpdateLanguageTechCommand request)
         {
             UpdatedLanguageTechDto result = await Mediator.Send(request);
+            return Ok(result);
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteLanguageTech(DeleteLanguageTechCommand request)
+        {
+            DeletedLanguageTechDto result = await Mediator.Send(request);
             return Ok(result);
         }
     }
