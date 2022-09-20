@@ -37,9 +37,5 @@ namespace Application.Features.ProgrammingLanguages.Rules
         {
             if (programmingLanguage is null) throw new BusinessException("Requested programming language doesn't exist");
         }
-        public void ProgrammingLanguageNameCannotBeEmpty(string name)
-        {
-            if (String.IsNullOrWhiteSpace(name)) throw new BusinessException("Programming language name cannot be empty");
-        }
     }
 }
