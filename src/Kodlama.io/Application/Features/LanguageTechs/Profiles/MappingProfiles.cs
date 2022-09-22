@@ -26,6 +26,8 @@ namespace Application.Features.LanguageTechs.Profiles
 
             CreateMap<LanguageTech, DeleteLanguageTechCommand>().ReverseMap();
             CreateMap<LanguageTech, DeletedLanguageTechDto>().ReverseMap();
+
+            CreateMap<LanguageTech,GetLanguageTechByIdDto>().ReverseMap();
         }
     }
 }
