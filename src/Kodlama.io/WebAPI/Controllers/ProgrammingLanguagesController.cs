@@ -4,8 +4,10 @@ using Application.Features.ProgrammingLanguages.Commands.UpdateProgrammingLangua
 using Application.Features.ProgrammingLanguages.Dtos;
 using Application.Features.ProgrammingLanguages.Models;
 using Application.Features.ProgrammingLanguages.Queries.GetListProgrammingLanguage;
+using Application.Features.ProgrammingLanguages.Queries.GetListProgrammingLanguageByDynamic;
 using Application.Features.ProgrammingLanguages.Queries.GetProgrammingLanguageById;
 using Core.Application.Requests;
+using Core.Persistence.Dynamic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.InteropServices;
@@ -46,6 +48,13 @@ namespace WebAPI.Controllers
             ProgrammingLanguageListModel result = await Mediator.Send(new GetListProgrammingLanguageQuery(pageRequest));
             return Ok(result);
         }
+        [HttpPost("GetList/ByDynamic")]
+        public async Task<IActionResult> GetListProgrammingLanguageByDynamic([FromQuery] PageRequest pageRequest, [FromBody] Dynamic dynamic)
+        {
+            var result = await Mediator.Send(new GetListProgrammingLanguageByDynamicQuery(pageRequest, dynamic));
+            return Ok(result);
+        }
+
 
     }
 }
