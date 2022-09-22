@@ -3,9 +3,12 @@ using Application.Features.LanguageTechs.Commands.DeleteLanguageTech;
 using Application.Features.LanguageTechs.Commands.UpdateLanguageTech;
 using Application.Features.LanguageTechs.Dtos;
 using Application.Features.LanguageTechs.Models;
+using Application.Features.LanguageTechs.Queries.GetLanguageTechByDynamic;
 using Application.Features.LanguageTechs.Queries.GetLanguageTechById;
 using Application.Features.LanguageTechs.Queries.GetListLanguageTech;
+using Application.Features.ProgrammingLanguages.Queries.GetListProgrammingLanguageByDynamic;
 using Core.Application.Requests;
+using Core.Persistence.Dynamic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +22,7 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> CreateLanguageTech(CreateLanguageTechCommand request)
         {
             CreatedLanguageTechDto result = await Mediator.Send(request);
-            return Created("",result);
+            return Created("", result);
         }
 
         [HttpPut]
@@ -44,6 +47,12 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> GetListLanguageTechs([FromQuery] PageRequest pageRequest)
         {
             LanguageTechListModel result = await Mediator.Send(new GetListLanguageTechQuery(pageRequest));
+            return Ok(result);
+        }
+        [HttpPost("GetList/ByDynamic")]
+        public async Task<IActionResult> GetLanguageTechByDynamic([FromQuery] PageRequest pageRequest, [FromBody] Dynamic dynamic)
+        {
+            LanguageTechListModel result = await Mediator.Send(new GetLanguageTechByDynamicQuery(dynamic,pageRequest));
             return Ok(result);
         }
     }
