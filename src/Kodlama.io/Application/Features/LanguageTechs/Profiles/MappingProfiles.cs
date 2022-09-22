@@ -2,7 +2,9 @@
 using Application.Features.LanguageTechs.Commands.DeleteLanguageTech;
 using Application.Features.LanguageTechs.Commands.UpdateLanguageTech;
 using Application.Features.LanguageTechs.Dtos;
+using Application.Features.LanguageTechs.Models;
 using AutoMapper;
+using Core.Persistence.Paging;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -28,6 +30,11 @@ namespace Application.Features.LanguageTechs.Profiles
             CreateMap<LanguageTech, DeletedLanguageTechDto>().ReverseMap();
 
             CreateMap<LanguageTech,GetLanguageTechByIdDto>().ReverseMap();
+
+            CreateMap<LanguageTech, LanguageTechListDto>()
+                .ForMember(x => x.LanguageName, opt => opt.MapFrom(y => y.ProgrammingLanguage.Name))
+                .ReverseMap();
+            CreateMap<IPaginate<LanguageTech>, LanguageTechListModel>().ReverseMap();
         }
     }
 }
