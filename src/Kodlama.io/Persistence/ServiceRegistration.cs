@@ -22,6 +22,7 @@ namespace Persistence
             });
             services.AddScoped<IProgrammingLanguageRepository, ProgrammingLanguageRepository>();
             services.AddScoped<ILanguageTechRepository, LangugageTechRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }
