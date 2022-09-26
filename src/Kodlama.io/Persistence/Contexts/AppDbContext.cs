@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Core.Security.Entities;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Configurations;
 using Persistence.SeedDatas;
@@ -13,6 +14,14 @@ namespace Persistence.Contexts
     public  class AppDbContext : DbContext
     {
         public DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }
+        public DbSet<LanguageTech> LanguageTechs { get; set; }
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+
+
         public AppDbContext(DbContextOptions<AppDbContext> options): base(options)
         {
 
@@ -24,6 +33,10 @@ namespace Persistence.Contexts
 
             modelBuilder.ApplyConfiguration<LanguageTech>(new LanguageTechConfiguration());
             modelBuilder.ApplyConfiguration<LanguageTech>(new LanguageTechSeedData());
+
+            modelBuilder.ApplyConfiguration<UserOperationClaim>(new UserOperationClaimConfiguration());
+
+            modelBuilder.ApplyConfiguration<User>(new UserConfiguration());
         }
     }
 }
