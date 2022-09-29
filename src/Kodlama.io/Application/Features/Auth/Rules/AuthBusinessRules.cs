@@ -27,5 +27,9 @@ namespace Application.Features.Auth.Rules
                 if (item.Email == email) throw new BusinessException($"Email address {email} already exist");
             }
         }
+        public void UserMustBeExistWhenLoggedIn(User? user)
+        {
+            if (user is null) throw new BusinessException("Requested user doesn't exist");
+        }
     }
 }

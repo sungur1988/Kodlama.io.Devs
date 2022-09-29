@@ -16,6 +16,7 @@ namespace Application.Features.Auth.Profiles
         {
             CreateMap<User, RegisteredUserDto>().ReverseMap();
             CreateMap<User, UserForRegisterDto>().ReverseMap();
+            CreateMap<User,LoggedInDto>().ReverseMap();
         }
     }
 }
