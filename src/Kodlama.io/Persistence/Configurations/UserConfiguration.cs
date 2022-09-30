@@ -1,4 +1,5 @@
 ﻿using Core.Security.Entities;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -16,6 +17,9 @@ namespace Persistence.Configurations
             builder.HasKey(x => x.Id);
             builder.HasMany(x => x.UserOperationClaims);
             builder.HasMany(x=>x.RefreshTokens);
+            builder.HasDiscriminator<int>("UserType")
+                .HasValue<User>(0)
+                .HasValue<AppUser>(1);
         }
     }
 }
