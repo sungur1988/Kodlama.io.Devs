@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace Application.Services.Repositories
 {
-    public interface IUserRepository : IAsyncRepository<AppUser>,IRepository<AppUser>
+    public interface IUserRepository : IAsyncRepository<User>,IRepository<User>
     {
-        Task<IList<OperationClaim>> GetClaims(AppUser appUser);
+        Task<IList<OperationClaim>> GetClaims(User appUser);
     }
 }
