@@ -16,6 +16,7 @@ namespace Persistence.Contexts
         public DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }
         public DbSet<LanguageTech> LanguageTechs { get; set; }
 
+        public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
@@ -35,8 +36,9 @@ namespace Persistence.Contexts
             modelBuilder.ApplyConfiguration<LanguageTech>(new LanguageTechSeedData());
 
             modelBuilder.ApplyConfiguration<UserOperationClaim>(new UserOperationClaimConfiguration());
-
             modelBuilder.ApplyConfiguration<User>(new UserConfiguration());
+            modelBuilder.ApplyConfiguration<SocialMedia>(new SocialMediaConfiguration());
+            modelBuilder.ApplyConfiguration<AppUser>(new AppUserConfiguration());
         }
     }
 }

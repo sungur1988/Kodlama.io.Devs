@@ -1,5 +1,6 @@
-﻿using Core.Security.Entities;
+﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,12 @@ using System.Threading.Tasks;
 
 namespace Persistence.Configurations
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public class SocialMediaConfiguration : IEntityTypeConfiguration<SocialMedia>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<SocialMedia> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.HasMany(x => x.UserOperationClaims);
-            builder.HasMany(x=>x.RefreshTokens);
+            builder.HasOne(x => x.AppUser);
         }
     }
 }

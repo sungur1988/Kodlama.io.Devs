@@ -2,6 +2,7 @@
 using AutoMapper;
 using Core.Security.Dtos;
 using Core.Security.Entities;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Application.Features.Auth.Profiles
         {
             CreateMap<User, RegisteredUserDto>().ReverseMap();
             CreateMap<User, UserForRegisterDto>().ReverseMap();
-            CreateMap<User,LoggedInDto>().ReverseMap();
+            CreateMap<User, LoggedInDto>().ReverseMap();
         }
     }
 }

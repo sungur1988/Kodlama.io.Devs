@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
-    public class UserRepository : EfRepositoryBase<AppUser, AppDbContext>, IUserRepository
+    public class UserRepository : EfRepositoryBase<User, AppDbContext>, IUserRepository
     {
         public UserRepository(AppDbContext context) : base(context)
         {
 
         }
 
-        public async Task<IList<OperationClaim>> GetClaims(AppUser appUser)
+        public async Task<IList<OperationClaim>> GetClaims(User appUser)
         {
             return await Context.UserOperationClaims
                 .Include(x=>x.OperationClaim)
