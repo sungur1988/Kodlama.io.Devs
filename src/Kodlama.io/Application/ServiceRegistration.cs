@@ -1,6 +1,7 @@
 ﻿using Application.Features.Auth.Rules;
 using Application.Features.LanguageTechs.Rules;
 using Application.Features.ProgrammingLanguages.Rules;
+using Application.Features.Users.Rules;
 using Core.Application.Pipelines.Validation;
 using FluentValidation;
 using MediatR;
@@ -25,6 +26,7 @@ namespace Application
             services.AddScoped(typeof(ProgrammingLanguageBusinessRules));
             services.AddScoped(typeof(LanguageTechBusinessRules));
             services.AddScoped(typeof(AuthBusinessRules));
+            services.AddScoped(typeof(UserBusinessRules));
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 

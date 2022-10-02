@@ -22,13 +22,13 @@ namespace Application.Features.Auth.Rules
 
         public async Task EmailCannotBeDuplicatedWhenRegistered(string email)
         {
-            IPaginate<User> entities = await _userRepository.GetListAsync(x=>x.Email==email,enableTracking:false);
-            foreach (User item in entities.Items)
+            IPaginate<AppUser> entities = await _userRepository.GetListAsync(x=>x.Email==email,enableTracking:false);
+            foreach (AppUser item in entities.Items)
             {
                 if (item.Email == email) throw new BusinessException($"Email address {email} already exist");
             }
         }
-        public void UserMustBeExistWhenLoggedIn(User? user)
+        public void UserMustBeExistWhenLoggedIn(AppUser? user)
         {
             if (user is null) throw new BusinessException("Requested user doesn't exist");
         }

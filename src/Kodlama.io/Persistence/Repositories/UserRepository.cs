@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
-    public class UserRepository : EfRepositoryBase<User, AppDbContext>, IUserRepository
+    public class UserRepository : EfRepositoryBase<AppUser, AppDbContext>, IUserRepository
     {
         public UserRepository(AppDbContext context) : base(context)
         {
 
         }
 
-        public async Task<IList<OperationClaim>> GetClaims(User appUser)
+        public async Task<IList<OperationClaim>> GetClaims(AppUser appUser)
         {
             return await Context.UserOperationClaims
                 .Include(x=>x.OperationClaim)
@@ -27,6 +27,10 @@ namespace Persistence.Repositories
                 .Select(x=>x.OperationClaim)
                 .ToListAsync();
 
+        }
+        public async Task<AppUser?> GetUserWithSocialMedia(int userId)
+        {
+            return Context.AppUsers.Include(x => x.SocialMedias).Where(x => x.Id == userId).FirstOrDefault();
         }
     }
 }

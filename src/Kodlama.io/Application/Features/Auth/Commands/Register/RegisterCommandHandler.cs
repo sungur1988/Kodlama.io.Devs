@@ -6,6 +6,7 @@ using AutoMapper;
 using Core.Security.Entities;
 using Core.Security.Hashing;
 using Core.Security.JWT;
+using Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -34,14 +35,14 @@ namespace Application.Features.Auth.Commands.Register
         {
             await _authBusinessRules.EmailCannotBeDuplicatedWhenRegistered(request.UserForRegisterDto.Email);
 
-            User entityToRegister = _mapper.Map<User>(request.UserForRegisterDto);
+            AppUser entityToRegister = _mapper.Map<AppUser>(request.UserForRegisterDto);
             byte[] passwordHash, passwordSalt;
             HashingHelper.CreatePasswordHash(request.UserForRegisterDto.Password, out passwordHash, out passwordSalt);
             entityToRegister.PasswordSalt = passwordSalt;
             entityToRegister.PasswordHash = passwordHash;
             entityToRegister.Status = true;
 
-            User addedEntity = await _userRepository.AddAsync(entityToRegister);
+            AppUser addedEntity = await _userRepository.AddAsync(entityToRegister);
             IList<OperationClaim> claims = await _userRepository.GetClaims(addedEntity);
 
             AccessToken token = _tokenHelper.CreateToken(addedEntity, claims);

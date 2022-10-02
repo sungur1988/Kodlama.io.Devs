@@ -7,6 +7,7 @@ using Core.CrossCuttingConcerns.Exceptions;
 using Core.Security.Entities;
 using Core.Security.Hashing;
 using Core.Security.JWT;
+using Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace Application.Features.Auth.Commands.Login
 
         public async Task<LoginResponseModel> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            User? user = await _userRepository.GetAsync(x => x.Email == request.UserForLoginDto.Email);
+            AppUser? user = await _userRepository.GetAsync(x => x.Email == request.UserForLoginDto.Email);
 
             _authBusinessRules.UserMustBeExistWhenLoggedIn(user);
 
