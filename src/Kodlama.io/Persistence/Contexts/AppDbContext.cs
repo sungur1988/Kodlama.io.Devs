@@ -38,6 +38,8 @@ namespace Persistence.Contexts
             modelBuilder.ApplyConfiguration<UserOperationClaim>(new UserOperationClaimConfiguration());
             modelBuilder.ApplyConfiguration<User>(new UserConfiguration());
             modelBuilder.ApplyConfiguration<SocialMedia>(new SocialMediaConfiguration());
+            modelBuilder.ApplyConfiguration<AppUser>(new AppUserConfiguration());
+            modelBuilder.ApplyConfiguration<OperationClaim>(new OperationClaimConfiguration());
         }
     }
 }
