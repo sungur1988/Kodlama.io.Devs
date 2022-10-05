@@ -1,8 +1,6 @@
 ﻿using Application.Services.Repositories;
 using Core.Persistence.Repositories;
 using Core.Security.Entities;
-using Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 using Persistence.Contexts;
 using System;
 using System.Collections.Generic;
@@ -12,11 +10,10 @@ using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
-    public class UserRepository : EfRepositoryBase<AppUser, AppDbContext>, IUserRepository
+    public class RefreshTokenRepository : EfRepositoryBase<RefreshToken, AppDbContext>, IRefreshTokenRepository
     {
-        public UserRepository(AppDbContext context) : base(context)
+        public RefreshTokenRepository(AppDbContext context) : base(context)
         {
-
         }
     }
 }
