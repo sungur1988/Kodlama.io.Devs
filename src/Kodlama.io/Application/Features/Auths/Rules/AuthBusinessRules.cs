@@ -23,5 +23,9 @@ namespace Application.Features.Auths.Rules
             User? user = await _userRepository.GetAsync(x => x.Email == email);
             if (user != null) throw new BusinessException($"Email address {email} already exist.");
         }
+        public void UserCannotBeNullWhenRequested(User? user)
+        {
+            if (user is null) throw new BusinessException($"User cannot found");
+        }
     }
 }

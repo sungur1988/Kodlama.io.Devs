@@ -48,7 +48,7 @@ namespace Application.Features.Auths.Commands.Register
             AppUser addedUser = await _userRepository.AddAsync(entityToAdd);
 
             AccessToken accessToken = await _authService.CreateAccessToken(addedUser);
-            RefreshToken refreshToken = await _authService.CreateRefreshToken(addedUser, request.ipAddress);
+            RefreshToken refreshToken = await _authService.CreateRefreshToken(addedUser, request.IpAddress);
             RefreshToken addedRefreshToken = await _authService.AddRefresToken(refreshToken);
 
             return new RegisteredDto { AccessToken = accessToken, RefreshToken = addedRefreshToken };
