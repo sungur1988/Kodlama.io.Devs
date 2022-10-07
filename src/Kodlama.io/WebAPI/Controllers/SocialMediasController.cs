@@ -1,5 +1,4 @@
 ﻿using Application.Features.SocialMedias.Command.CreateSocialMedia;
-using Application.Features.SocialMedias.Command.DeleteSocialMedia;
 using Application.Features.SocialMedias.Command.UpdateSocialMedia;
 using Application.Features.SocialMedias.Dtos;
 using Microsoft.AspNetCore.Http;
@@ -21,12 +20,6 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> UpdateSocialMedia([FromBody] UpdateSocialMediaCommand request)
         {
             UpdatedSocialMediaDto result = await Mediator.Send(request);
-            return Ok(result);
-        }
-        [HttpDelete]
-        public async Task<IActionResult> DeleteSocialMedia([FromBody] DeleteSocialMediaCommand request)
-        {
-            DeletedSocialMediaDto result = await Mediator.Send(request);
             return Ok(result);
         }
     }

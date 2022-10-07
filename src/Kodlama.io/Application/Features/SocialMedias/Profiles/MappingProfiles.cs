@@ -1,5 +1,4 @@
 ﻿using Application.Features.SocialMedias.Command.CreateSocialMedia;
-using Application.Features.SocialMedias.Command.DeleteSocialMedia;
 using Application.Features.SocialMedias.Command.UpdateSocialMedia;
 using Application.Features.SocialMedias.Dtos;
 using AutoMapper;
@@ -21,9 +20,6 @@ namespace Application.Features.SocialMedias.Profiles
 
             CreateMap<SocialMedia, UpdateSocialMediaCommand>().ReverseMap();
             CreateMap<SocialMedia,UpdatedSocialMediaDto>().ReverseMap();
-
-            CreateMap<SocialMedia, DeleteSocialMediaCommand>().ReverseMap();
-            CreateMap<SocialMedia, DeletedSocialMediaDto>().ReverseMap();
         }
     }
 }
