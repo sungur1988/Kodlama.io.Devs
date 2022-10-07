@@ -15,8 +15,10 @@ namespace Persistence.Contexts
     {
         public DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }
         public DbSet<LanguageTech> LanguageTechs { get; set; }
-
         public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<SocialMedia> SocialMedias { get; set; }
+
+        
         public DbSet<User> Users { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }

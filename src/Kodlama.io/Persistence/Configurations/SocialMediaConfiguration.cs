@@ -14,6 +14,7 @@ namespace Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<SocialMedia> builder)
         {
+            builder.ToTable("SocialMedias");
             builder.HasKey(x => x.Id);
             builder.HasOne(x => x.AppUser);
         }
