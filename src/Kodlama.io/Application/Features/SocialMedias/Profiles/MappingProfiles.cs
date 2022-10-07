@@ -1,4 +1,5 @@
 ﻿using Application.Features.SocialMedias.Command.CreateSocialMedia;
+using Application.Features.SocialMedias.Command.UpdateSocialMedia;
 using Application.Features.SocialMedias.Dtos;
 using AutoMapper;
 using Domain.Entities;
@@ -16,6 +17,9 @@ namespace Application.Features.SocialMedias.Profiles
         {
             CreateMap<SocialMedia, CreateSocialMediaCommand>().ReverseMap();
             CreateMap<SocialMedia, CreatedSocialMediaDto>().ReverseMap();
+
+            CreateMap<SocialMedia, UpdateSocialMediaCommand>().ReverseMap();
+            CreateMap<SocialMedia,UpdatedSocialMediaDto>().ReverseMap();
         }
     }
 }

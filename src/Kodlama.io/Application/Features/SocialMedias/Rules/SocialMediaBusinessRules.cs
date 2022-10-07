@@ -1,5 +1,6 @@
 ﻿using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
+using Core.Persistence.Paging;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,11 @@ namespace Application.Features.SocialMedias.Rules
         {
             SocialMedia? socialMedia = await _socialMediaRepository.GetAsync(x => x.UrlAddress == urlAddress);
             if (socialMedia is not null) throw new BusinessException($"This urladdress {urlAddress} already exist");
+        }
+        public async Task SocialMediaAddressMustBeExistWhenRequested(int id)
+        {
+            IPaginate<SocialMedia>? socialMedias = await _socialMediaRepository.GetListAsync(x=>x.Id==id,enableTracking:false);
+            if (!socialMedias.Items.Any()) throw new BusinessException($"Social media with {id} cannot found");
         }
     }
 }
