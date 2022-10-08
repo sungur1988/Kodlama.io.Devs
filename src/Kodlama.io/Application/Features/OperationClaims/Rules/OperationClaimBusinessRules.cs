@@ -23,5 +23,10 @@ namespace Application.Features.OperationClaims.Rules
            IPaginate<OperationClaim> claims = await _operationClaimRepository.GetListAsync(x=>x.Name==name);
             if (claims.Items.Any()) throw new BusinessException($"This operation claim name {name} already exist.");
         }
+        public async Task OperationClaimMustBeExistWhenRequested(int id)
+        {
+            IPaginate<OperationClaim> claims = await _operationClaimRepository.GetListAsync(x => x.Id == id,enableTracking:false);
+            if (!claims.Items.Any()) throw new BusinessException($"Operation claim with {id} id doesn't exist");
+        }
     }
 }
