@@ -1,5 +1,6 @@
 ﻿using Application.Features.Auths.Rules;
 using Application.Features.LanguageTechs.Rules;
+using Application.Features.OperationClaims.Rules;
 using Application.Features.ProgrammingLanguages.Rules;
 using Application.Features.SocialMedias.Rules;
 using Application.Services.AuthServices;
@@ -28,6 +29,7 @@ namespace Application
             services.AddScoped(typeof(LanguageTechBusinessRules));
             services.AddScoped(typeof(AuthBusinessRules));
             services.AddScoped(typeof(SocialMediaBusinessRules));
+            services.AddScoped(typeof(OperationClaimBusinessRules));
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             services.AddScoped<IAuthService, AuthManager>();
