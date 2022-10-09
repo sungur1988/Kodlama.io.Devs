@@ -1,4 +1,5 @@
 ﻿using Application.Features.OperationClaims.Commands.CreateOperationClaim;
+using Application.Features.OperationClaims.Commands.DeleteOperationClaim;
 using Application.Features.OperationClaims.Commands.UpdateOperationClaim;
 using Application.Features.OperationClaims.Dtos;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +21,12 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> UpdateOperationClaim([FromBody] UpdateOperationClaimCommand request)
         {
             UpdatedOperationClaimDto result = await Mediator.Send(request);
+            return Ok(result);
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteOperationClaim([FromBody] DeleteOperationClaimCommand request)
+        {
+            DeletedOperationClaimDto result = await Mediator.Send(request);
             return Ok(result);
         }
     }
