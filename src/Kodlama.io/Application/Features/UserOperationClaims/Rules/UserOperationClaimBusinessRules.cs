@@ -1,5 +1,6 @@
 ﻿using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
+using Core.Persistence.Paging;
 using Core.Security.Entities;
 using Domain.Entities;
 using System;
@@ -30,6 +31,11 @@ namespace Application.Features.UserOperationClaims.Rules
         {
             UserOperationClaim? userOperationClaim = await _userOperationClaimRepository.GetAsync(x => x.UserId == appUserId && x.OperationClaimId == operationClaimId);
             if (userOperationClaim is not null) throw new BusinessException("This operation claim already added");
+        }
+        public async Task UserOperationClaimSholdBeExistWhenRequested(int appUserId,int operationClaimId)
+        {
+            IPaginate<UserOperationClaim>? userOperationClaims = await _userOperationClaimRepository.GetListAsync(x => x.UserId == appUserId && x.OperationClaimId == operationClaimId, enableTracking: false);
+            if (!userOperationClaims.Items.Any()) throw new BusinessException("User operation claim should be exist when requested");
         }
     }
 }

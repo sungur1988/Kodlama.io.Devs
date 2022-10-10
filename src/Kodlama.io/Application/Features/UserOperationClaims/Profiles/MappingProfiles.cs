@@ -1,4 +1,5 @@
 ﻿using Application.Features.UserOperationClaims.Commands.CreateUserOperationClaim;
+using Application.Features.UserOperationClaims.Commands.DeleteUserOperationClaim;
 using AutoMapper;
 using Core.Security.Entities;
 using System;
@@ -15,6 +16,9 @@ namespace Application.Features.UserOperationClaims.Profiles
         {
             CreateMap<UserOperationClaim, CreateUserOperationClaimCommand>()
                 .ForMember(x => x.AppUserId, opt => opt.MapFrom(x => x.UserId))
+                .ReverseMap();
+            CreateMap<UserOperationClaim, DeleteUserOperationClaimCommand>()
+                .ForMember(x => x.Id, opt => opt.MapFrom(x => x.UserId))
                 .ReverseMap();
         }
     }
