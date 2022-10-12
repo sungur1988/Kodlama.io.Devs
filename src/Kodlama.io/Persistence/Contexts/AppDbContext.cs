@@ -32,16 +32,20 @@ namespace Persistence.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration<ProgrammingLanguage>(new ProgrammingLanguageConfiguration());
-            modelBuilder.ApplyConfiguration<ProgrammingLanguage>(new ProgrammingLanguageDataSeed());
+            modelBuilder.ApplyConfiguration<ProgrammingLanguage>(new ProgrammingLanguageSeedData());
 
             modelBuilder.ApplyConfiguration<LanguageTech>(new LanguageTechConfiguration());
             modelBuilder.ApplyConfiguration<LanguageTech>(new LanguageTechSeedData());
 
             modelBuilder.ApplyConfiguration<UserOperationClaim>(new UserOperationClaimConfiguration());
+            modelBuilder.ApplyConfiguration<UserOperationClaim>(new UserOperationClaimSeedData());
+
             modelBuilder.ApplyConfiguration<User>(new UserConfiguration());
             modelBuilder.ApplyConfiguration<SocialMedia>(new SocialMediaConfiguration());
             modelBuilder.ApplyConfiguration<AppUser>(new AppUserConfiguration());
+
             modelBuilder.ApplyConfiguration<OperationClaim>(new OperationClaimConfiguration());
+            modelBuilder.ApplyConfiguration<OperationClaim>(new OperationClaimSeedData());
         }
     }
 }

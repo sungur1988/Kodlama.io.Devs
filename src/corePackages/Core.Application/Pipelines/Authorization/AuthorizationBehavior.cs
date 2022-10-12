@@ -20,7 +20,7 @@ public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TReq
                                         RequestHandlerDelegate<TResponse> next)
     {
         List<string>? roleClaims = _httpContextAccessor.HttpContext.User.ClaimRoles();
-
+        var c = _httpContextAccessor.HttpContext.User;
         if (roleClaims == null) throw new AuthorizationException("Claims not found.");
 
         bool isNotMatchedARoleClaimWithRequestRoles =

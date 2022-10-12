@@ -5,6 +5,7 @@ using Application.Features.ProgrammingLanguages.Rules;
 using Application.Features.SocialMedias.Rules;
 using Application.Features.UserOperationClaims.Rules;
 using Application.Services.AuthServices;
+using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Validation;
 using FluentValidation;
 using MediatR;
@@ -33,6 +34,7 @@ namespace Application
             services.AddScoped(typeof(OperationClaimBusinessRules));
             services.AddScoped(typeof(UserOperationClaimBusinessRules));
 
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             services.AddScoped<IAuthService, AuthManager>();
 

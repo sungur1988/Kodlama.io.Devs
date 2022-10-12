@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Persistence.SeedDatas
 {
-    public class ProgrammingLanguageDataSeed : IEntityTypeConfiguration<ProgrammingLanguage>
+    public class ProgrammingLanguageSeedData : IEntityTypeConfiguration<ProgrammingLanguage>
     {
         public void Configure(EntityTypeBuilder<ProgrammingLanguage> builder)
         {
